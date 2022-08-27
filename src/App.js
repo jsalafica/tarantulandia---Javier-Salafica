@@ -1,13 +1,14 @@
-import logo from "./logo.svg";
+
 import "./App.css";
-import NavBar from "./components/NavBar";
+import NavBar from "./components/NavBar/NavBar.js";
+import Titulo from "./components/Titulo/Titulo";
 
 function App() {
     return (
     <div className="App">
         <NavBar />
         <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
+            <Titulo titulo="Tarantulandia!!"/>
         </header>
     </div>
     );
