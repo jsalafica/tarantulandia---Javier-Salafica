@@ -5,9 +5,11 @@ const Counter = () => {
     const stock = 10;
     const [cantidad, setCantidad] = useState(0);
 
-    const suma = () => {cantidad < stock ? setCantidad(cantidad + 1) : alert(`Se llegó al máximo: ${stock}`);
+    const suma = () => {
+        cantidad < stock ? setCantidad(cantidad + 1) : alert(`Se llegó al máximo: ${stock}`);
     };
-    const resta = () => {cantidad > 0 ? setCantidad(cantidad - 1) : alert ('Se llegó al mínimo: 0');
+    const resta = () => {
+        cantidad > 0 ? setCantidad(cantidad - 1) : alert ('Se llegó al mínimo: 0');
     };
 
     return (
