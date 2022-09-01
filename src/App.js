@@ -1,5 +1,5 @@
-
 import "./App.css";
+import Counter from "./components/Counter/Counter";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
 import NavBar from "./components/NavBar/NavBar.js";
 import Titulo from "./components/Titulo/Titulo";
@@ -11,6 +11,7 @@ function App() {
         <header className="App-header">
             <Titulo titulo="Tarantulandia!!"/>
             <ItemListContainer greeting="Bienvenidos a mi portal!!"/>
+            <Counter />
         </header>
     </div>
     );

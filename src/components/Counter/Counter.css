@@ -1,0 +1,20 @@
+div {
+    text-align: center;
+}
+button {
+    border-radius: 8px;
+    padding: 10px 24px;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 20px;
+    margin-right: 5px;
+}
+p {
+    color: coral;
+    margin-top: 50px;
+}
+h3 {
+    color: crimson;
+    margin-top: 15px;
+    font-size: 24px;
+}
