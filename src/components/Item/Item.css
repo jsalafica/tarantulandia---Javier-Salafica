@@ -1,0 +1,26 @@
+.items {
+    border: 2px solid lightslategray;
+    border-radius: 5px;
+    background-color: aliceblue;
+    width: 300px;
+    height: 290px;
+    text-align: center;
+    margin: 10px;
+}
+.items img {
+    width: 200px;
+    height: 150px;
+    border: 1px solid lightsalmon;
+    border-radius: 5px;
+    margin: 10px;
+}
+.items img:hover {
+    width: 205px;
+    height: 155px;
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+.items h2 {
+    margin-left: 10px;
+    margin-right: 10px;
+}

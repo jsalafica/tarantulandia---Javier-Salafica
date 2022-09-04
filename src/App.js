@@ -5,12 +5,13 @@ import NavBar from "./components/NavBar/NavBar.js";
 import Titulo from "./components/Titulo/Titulo";
 
 function App() {
+
     return (
-    <div className="App">
-        <NavBar />
-        <header className="App-header">
+    <div>
+        <header>
+            <NavBar />
             <Titulo titulo="Tarantulandia!!"/>
-            <ItemListContainer greeting="Bienvenidos a mi portal!!"/>
+            <ItemListContainer />
             <Counter />
         </header>
     </div>

@@ -8,6 +8,10 @@ button {
     text-decoration: none;
     margin-top: 20px;
     margin-right: 5px;
+    background-color: lightsalmon;
+}
+button:hover {
+    background-color: lightcoral;
 }
 p {
     color: coral;
