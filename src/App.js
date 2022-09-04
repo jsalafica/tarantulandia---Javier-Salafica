@@ -11,8 +11,8 @@ function App() {
         <header>
             <NavBar />
             <Titulo titulo="Tarantulandia!!"/>
-            <ItemListContainer />
             <Counter />
+            <ItemListContainer />
         </header>
     </div>
     );
