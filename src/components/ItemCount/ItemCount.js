@@ -1,15 +1,15 @@
-import { useState } from "react";
-import "./Counter.css";
 
-const Counter = () => {
-    const stock = 10;
-    const [cantidad, setCantidad] = useState(0);
+import "./ItemCount.css";
+
+const ItemCount = ({setCantidad, cantidad, stock}) => {
+    
 
     const suma = () => {
         cantidad < stock ? setCantidad(cantidad + 1) : alert(`Se llegó al máximo: ${stock}`);
     };
     const resta = () => {
-        cantidad > 0 ? setCantidad(cantidad - 1) : alert ('Se llegó al mínimo: 0');
+        // cantidad > 0 ? setCantidad(cantidad - 1) : alert ('Se llegó al mínimo: 0');
+        cantidad > 0 && setCantidad(cantidad - 1);
     };
 
     return (
@@ -22,4 +22,4 @@ const Counter = () => {
     );
 };
 
-export default Counter;
+export default ItemCount;
