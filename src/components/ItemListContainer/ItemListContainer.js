@@ -28,7 +28,7 @@ const ItemListContainer = () => {
             } else {
                 resolve(data);
             }
-        },1000);
+        },100);
     });
 
     return (

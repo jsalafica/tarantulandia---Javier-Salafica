@@ -5,14 +5,15 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar.js";
 import Titulo from "./components/Titulo/Titulo";
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
-import { CartContext } from "./context/cartContext";
+import CartProvider  from "./context/CartProvider";
+import Cart from "./components/Cart/Cart";
 
 function App() {
 
     return (
     <div>
         <header>
-            <CartContext.Provider value={[]}>
+            <CartProvider>
                 <BrowserRouter>
                     <NavBar />
                     <Titulo titulo="Tarantulandia!!"/>
@@ -21,13 +22,10 @@ function App() {
                         <Route path="category/:categoryName" element={<ItemListContainer />} />
                         <Route path="stage/:stageStatus" element={<ItemListContainer />} />
                         <Route path="details/:id" element={<ItemDetailContainer />} />
-                        <Route path="cart" element={<p>Agregado al carrito</p>} />
+                        <Route path="cart" element={<Cart />} />
                     </Routes>
-                    {/* <Counter /> */}
-                    {/* <ItemListContainer /> */}
-                    {/* <ItemDetailContainer /> */}
                 </BrowserRouter>
-            </CartContext.Provider>
+            </CartProvider>
         </header>
     </div>
     );

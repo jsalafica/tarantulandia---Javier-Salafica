@@ -23,7 +23,11 @@ const NavBar = () => {
                 <li>
                     <NavLink to={'/stage/sling'}>Lings</NavLink>
                 </li>
-                <li><CartWidget/></li>
+                <li>
+                    <NavLink to={'/cart'}>
+                        <CartWidget unit="0"/>
+                    </NavLink>
+                </li>
             </ul>
         </nav>
     )
