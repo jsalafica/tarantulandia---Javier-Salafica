@@ -1,8 +1,8 @@
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
 import { CartContext } from "./CartContext";
 
 const CartProvider = ({children}) => {
+    
     const [cart, setCart] = useState([]);
     const [itemCart, setItemCart] = useState(0);
 
@@ -11,8 +11,6 @@ const CartProvider = ({children}) => {
             alert('Ya està en el carrito');
         } else {
             setCart([...cart, {...item, quantity},]);
-            setItemCart(cart.length);
-            console.log(cart.length);
         }
     }
 
@@ -22,13 +20,15 @@ const CartProvider = ({children}) => {
 
     const clear = () => {
         setCart([]);
-        setItemCart(0)
     }
 
     const removeItem = (id) => {
         setCart(cart.filter((item) => item.id !== id));
-        setItemCart(cart.length);
     }
+
+    useEffect(()=>{
+        setItemCart(cart.length);
+    },[cart]);
 
     return (
         <CartContext.Provider value={{ cart, addItem, removeItem, clear, itemCart }}>

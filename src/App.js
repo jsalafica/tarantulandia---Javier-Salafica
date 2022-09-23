@@ -1,5 +1,4 @@
 import "./App.css";
-// import Counter from "./components/Counter/Counter";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar.js";
@@ -9,7 +8,6 @@ import CartProvider  from "./context/CartProvider";
 import Cart from "./components/Cart/Cart";
 
 function App() {
-
     return (
     <div>
         <header>

@@ -5,7 +5,7 @@
     max-width: 720px;
     margin: 0 auto;
     /* height: 100vh; */
-    height: 150px;
+    height: 120px;
     list-style: none;
 }
 
@@ -46,5 +46,5 @@
 }
 
 .navBar li img {
-    width: 50%;
+    width: 60%;
 }

@@ -1,5 +1,5 @@
 import "./NavBar.css";
-import logo from "./images.jpg";
+import logo from "./tarantula.png";
 import CartWidget from "../CartWidget/CartWidget";
 import { NavLink } from "react-router-dom";
 
@@ -7,7 +7,6 @@ const NavBar = () => {
     return(
         <nav>
             <ul className='navBar'>
-                {/* <li><img src={logo} alt='Logo'/></li> */}
                 <li>
                     <NavLink to={'/'}><img src={logo} alt='Logo'/></NavLink>
                 </li>
@@ -25,7 +24,7 @@ const NavBar = () => {
                 </li>
                 <li>
                     <NavLink to={'/cart'}>
-                        <CartWidget unit="0"/>
+                        <CartWidget />
                     </NavLink>
                 </li>
             </ul>
