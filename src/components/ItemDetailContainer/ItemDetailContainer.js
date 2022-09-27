@@ -20,15 +20,15 @@ const ItemDetailContainer = () => {
         //     setProducto(response);
         // })
         // .catch((error) => console.log(error));
-    }, [id]);
+    });
 
     const getProduct = () => {
         const queryDoc = doc(db, 'items', id);
-    getDoc(queryDoc)
-    .then((res)=>{
-        setProducto({ id: res.id, ...res.data()});
-    })
-    .catch(err => console.log(err));
+        getDoc(queryDoc)
+        .then((res)=>{
+            setProducto({ id: res.id, ...res.data()});
+        })
+        .catch(err => console.log(err));
     }
 
     // const getProduct = new Promise((resolve, reject) => {

@@ -17,7 +17,7 @@ const ItemListContainer = () => {
         //     setProductList(response);
         // })
         // .catch((error) => console.log(error));
-    },[categoryName, stageStatus]);
+    });
 
     //Firebase
     const getProducts = () => {
