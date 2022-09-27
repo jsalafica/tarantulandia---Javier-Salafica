@@ -27,7 +27,8 @@ const CartProvider = ({children}) => {
     }
 
     useEffect(()=>{
-        setItemCart(cart.length);
+        // setItemCart(cart.length);
+        setItemCart(cart.reduce((acc, numero) => acc + numero.quantity,0));
     },[cart]);
 
     return (
