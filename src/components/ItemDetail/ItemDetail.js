@@ -18,7 +18,7 @@ const ItemDetail = ({ item }) => {
       <img src={item.image} alt="title" />
       <h2>{item.title}</h2>
       <h3>{item.stage}</h3>
-      <h4>{item.detail}</h4>
+      <h4>{item.description}</h4>
       <h3>${item.price}</h3>
       <h4>Stock: {item.stock}</h4>
       <ItemCount setCantidad = {setCantidad} cantidad = {cantidad} stock = {stock} />

@@ -1,28 +1,42 @@
 import "./ItemDetailContainer.css";
-import data from "../mockData";
+// import data from "../mockData";
 import ItemDetail from "../ItemDetail/ItemDetail";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { doc, getDoc, getFirestore } from "firebase/firestore";
 
 const ItemDetailContainer = () => {
 
     const [producto, setProducto] = useState([]);
     const { id } = useParams();
 
-    useEffect(() => {
-        getProduct.then((response) => {
-            setProducto(response);
-            // console.log(response);
-        })
-        .catch((error) => console.log(error));
-    });
+    //Firebase
+    const db = getFirestore();
 
-    const getProduct = new Promise((resolve, reject) => {
-        setTimeout(() => {
-            // resolve(data[id-1]);
-            resolve(data.find((item) => item.id === Number(id)));
-        },100);
-    });
+    useEffect(() => {
+        getProduct();
+
+        // getProduct.then((response) => {
+        //     setProducto(response);
+        // })
+        // .catch((error) => console.log(error));
+    }, [id]);
+
+    const getProduct = () => {
+        const queryDoc = doc(db, 'items', id);
+    getDoc(queryDoc)
+    .then((res)=>{
+        setProducto({ id: res.id, ...res.data()});
+    })
+    .catch(err => console.log(err));
+    }
+
+    // const getProduct = new Promise((resolve, reject) => {
+    //     setTimeout(() => {
+    //         // resolve(data[id-1]);
+    //         resolve(data.find((item) => item.id === Number(id)));
+    //     },100);
+    // });
 
     return (
         <>
