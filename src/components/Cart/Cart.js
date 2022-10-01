@@ -2,10 +2,62 @@ import './Cart.css';
 import '../ItemDetail/ItemDetail.css'
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { collection, addDoc, getFirestore, doc, updateDoc } from 'firebase/firestore';
+import moment from 'moment/moment';
 
 const Cart = () => {
     const {cart, removeItem, clear} = useContext(CartContext);
+    const db = getFirestore();
+    const navigate = useNavigate();
+
+    const createOrder = () => {
+        const order = {
+            buyer: {
+                name: 'Juan',
+                phone: '123456789',
+                email: 'test@test.com'
+            },
+            items: cart,
+            total: cart.reduce((valorPasado, valorActual) => valorPasado + (valorActual.price * valorActual.quantity), 0),
+            date: moment().format()
+        };
+        const query = collection(db, 'orders');
+        addDoc(query, order)
+        .then(({ id }) => {
+            // console.log(id);
+            updateStockProducts();
+            alert(`Gracias por su compra.
+            Total: $${order.total}
+            Código de compra: ${id}
+                `);
+        })
+        .catch(() => alert('Error al completar tu compra'));
+    }
+
+    const updateStockProducts = () => {
+        cart.forEach(product => {
+            const queryUpdate = doc(db, 'items', product.id);
+            updateDoc(queryUpdate, {
+                categoryId: product.categoryId,
+                description: product.description,
+                image: product.image,
+                price: product.price,
+                title: product.title,
+                stock: product.stock - product.quantity
+            })
+            .then(()=>{
+                if(cart[cart.length -1].id === product.id){
+                    clear();
+                    navigate('/');
+                }
+            })
+            .catch(()=>{
+                console.log('Error al actualizar stock');
+            })
+        });
+    }
+
     if(cart.length!==0){
         return (
             <>
@@ -22,6 +74,7 @@ const Cart = () => {
                     </div>
                 ))}
             </div>
+            <button onClick={createOrder}>Crear orden</button>
             </>
         )    
     } else {

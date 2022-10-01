@@ -20,7 +20,7 @@ const ItemDetailContainer = () => {
         //     setProducto(response);
         // })
         // .catch((error) => console.log(error));
-    },[]);
+    },[id]);
 
     const getProduct = () => {
         const queryDoc = doc(db, 'items', id);

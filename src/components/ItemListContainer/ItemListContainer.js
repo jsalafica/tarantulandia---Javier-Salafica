@@ -31,7 +31,7 @@ const ItemListContainer = () => {
                     return { id:product.id, ...product.data() };
                 })
                 setProductList(data);
-                console.log(`Categoria: ${categoryName}`);
+                // console.log(`Categoria: ${categoryName}`);
             })
         } else if(stageStatus){
             const queryFilter = query(querySnapshot, where ("stage", "==", stageStatus));
@@ -40,7 +40,7 @@ const ItemListContainer = () => {
                     return { id:product.id, ...product.data() };
                 })
                 setProductList(data);
-                console.log(`Categoria: ${categoryName}`);
+                // console.log(`Categoria: ${categoryName}`);
             })
         } else {
             getDocs(querySnapshot).then((response) => {
@@ -48,7 +48,7 @@ const ItemListContainer = () => {
                     return { id:product.id, ...product.data() };
                 })
                 setProductList(data);
-                console.log('Todos');
+                // console.log('Todos');
             })
         }
     }
