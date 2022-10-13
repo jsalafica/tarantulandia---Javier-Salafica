@@ -15,11 +15,6 @@ const ItemDetailContainer = () => {
 
     useEffect(() => {
         getProduct();
-
-        // getProduct.then((response) => {
-        //     setProducto(response);
-        // })
-        // .catch((error) => console.log(error));
     },[id]);
 
     const getProduct = () => {
@@ -30,13 +25,6 @@ const ItemDetailContainer = () => {
         })
         .catch(err => console.log(err));
     }
-
-    // const getProduct = new Promise((resolve, reject) => {
-    //     setTimeout(() => {
-    //         // resolve(data[id-1]);
-    //         resolve(data.find((item) => item.id === Number(id)));
-    //     },100);
-    // });
 
     return (
         <>

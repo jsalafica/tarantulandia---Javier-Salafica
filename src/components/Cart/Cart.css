@@ -6,3 +6,15 @@
     justify-content: center;
     align-items: center;
 }
+/* .formOrder {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+} */
+
+/* .formOrder div {
+    border-bottom: 20px;
+} */
