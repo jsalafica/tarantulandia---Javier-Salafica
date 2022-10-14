@@ -3,7 +3,7 @@ import './Item.css';
 const Item = ({title, price, image, stage, stock}) => {
     return (
         <div className='items'>
-            <img src={image} alt="title" />
+            <img src={image} alt="imagen" />
             <h2>{title}</h2>
             <h3>{stage}</h3>
             {stock!==0 ? 

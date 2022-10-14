@@ -33,7 +33,3 @@ const ItemList = ({ lista }) => {
 };
 
 export default ItemList;
-
-const name = () => {
-
-};

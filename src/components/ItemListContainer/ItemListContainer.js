@@ -9,7 +9,6 @@ const ItemListContainer = () => {
 
     const [productList, setProductList] = useState([]);
     const { categoryName,stageStatus } = useParams();
-    // const {stageStatus} = useParams();
 
     //Firebase
     const getProducts = () => {
@@ -27,34 +26,8 @@ const ItemListContainer = () => {
             })
             setProductList(data);
         });
-
-        // const querySnapshot = collection(db, 'items');
-
-        // if(categoryName){
-        //     const queryFilter = query(querySnapshot, where("categoryId", "==", categoryName));
-        //     getDocs(queryFilter).then((response) => {
-        //         const data = response.docs.map((product) => {
-        //             return { id:product.id, ...product.data() };
-        //         })
-        //         setProductList(data);
-        //     })
-        // } else if(stageStatus){
-        //     const queryFilter = query(querySnapshot, where ("stage", "==", stageStatus));
-        //     getDocs(queryFilter).then((response) => {
-        //         const data = response.docs.map((product) => {
-        //             return { id:product.id, ...product.data() };
-        //         })
-        //         setProductList(data);
-        //     })
-        // } else {
-        //     getDocs(querySnapshot).then((response) => {
-        //         const data = response.docs.map((product) => {
-        //             return { id:product.id, ...product.data() };
-        //         })
-        //         setProductList(data);
-        //     })
-        // }
     }
+    
     useEffect(() => {
         getProducts();
     },[categoryName,stageStatus]);

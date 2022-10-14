@@ -22,16 +22,24 @@ const ItemDetailContainer = () => {
         getDoc(queryDoc)
         .then((res)=>{
             setProducto({ id: res.id, ...res.data()});
+            if(res.title===undefined){
+                document.getElementById("productoNoEncontrado").style.display = "block";
+            } else {
+                document.getElementById("productoNoEncontrado").style.display = "none";
+            }
         })
         .catch(err => console.log(err));
     }
 
     return (
+        producto.title!==undefined ?
         <>
+            {console.log(producto.title)};
             <ItemDetail item={producto} />
         </>
-    );
-
+        :
+        <h3 id="productoNoEncontrado" style={{display: "none"}}>Producto no encontrado</h3>
+    )
 }
 
 export default ItemDetailContainer;

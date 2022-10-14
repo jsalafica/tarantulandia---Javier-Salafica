@@ -1,6 +1,5 @@
 import './Cart.css';
-import '../ItemDetail/ItemDetail.css'
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { CartContext } from "../../context/CartContext";
 import { Link, useNavigate } from 'react-router-dom';
 import { collection, addDoc, getFirestore, doc, updateDoc } from 'firebase/firestore';
@@ -30,7 +29,14 @@ const Cart = () => {
         name: "",
         phone: "",
         email: "",
+        emailConfirm: ""
     });
+
+    const [total, setTotal] = useState(0);
+
+    useEffect(()=>{
+        setTotal((cart.reduce((acc, item) => acc + item.price * item.quantity, 0)))
+        },[cart])
 
     const createOrder = () => {
         const order = {
@@ -40,7 +46,8 @@ const Cart = () => {
                 email: `${values.email}`
             },
             items: cart,
-            total: cart.reduce((acc, item) => acc + item.price * item.quantity, 0),
+            total: total,
+            // total: cart.reduce((acc, item) => acc + item.price * item.quantity, 0),
             date: moment().format()
         };
         const query = collection(db, 'orders');
@@ -94,6 +101,11 @@ const Cart = () => {
                 icon: 'error',
                 title: 'Los campos no pueden estar vacíos'
             });
+        } else if (values.email !== values.emailConfirm){
+            Toast.fire({
+                icon: 'error',
+                title: 'La dirección de correo no coincide'
+            });
         } else {
             createOrder();
         }    
@@ -112,7 +124,7 @@ const Cart = () => {
             <button onClick={()=>clear()}>Vaciar carrito</button>
             <div className='listaItemsCart'>
                 {cart.map((item) => (
-                    <div className='item' key={item.id}>
+                    <div className='itemCart' key={item.id}>
                         <img src={item.image} alt="title" />
                         <h2>{item.title}</h2>
                         <h3>{item.stage}</h3>
@@ -123,23 +135,32 @@ const Cart = () => {
                 ))}
             </div>
             <div>
+                <h4 style={{margin: "10px 10px 20px 10px"}}>Total de la compra: ${total}</h4>
+            </div>
+            <div style={{marginBottom: "10px"}}>
                 <form className='formOrder' onSubmit={submitOrder}>
-                    <div style={{border: "10px 10px 10px 10px"}}>
-                        <label htmlFor="name">Nombre </label>
-                        <input id="name" name="name" type="name" value={values.name} onChange={handleChange}></input>
-                    </div>
-                    <div>
-                        <label htmlFor="phone">Telefono </label>
-                        <input id="phone" name="phone" type="number" value={values.phone} onChange={handleChange}></input>
-                    </div>
-                    <div>
-                        <label htmlFor="email">E-mail </label>
-                        <input id="email" name="email" type="email" value={values.email} onChange={handleChange}></input>
-                    </div>
-                    <button type="submit">Crear orden</button>
+                    <fieldset>
+                        <legend>Orden</legend>
+                        <div>
+                            <label htmlFor="name">Nombre </label>
+                            <input id="name" name="name" type="name" value={values.name} onChange={handleChange}></input>
+                        </div>
+                        <div>
+                            <label htmlFor="phone">Telefono </label>
+                            <input id="phone" name="phone" type="number" value={values.phone} onChange={handleChange}></input>
+                        </div>
+                        <div>
+                            <label htmlFor="email">E-mail </label>
+                            <input id="email" name="email" type="email" value={values.email} onChange={handleChange}></input>
+                        </div>
+                        <div>
+                            <label htmlFor="emailConfirm">Confirmar E-mail </label>
+                            <input id="emailConfirm" name="emailConfirm" type="email" value={values.emailConfirm} onChange={handleChange}></input>
+                        </div>
+                        <button type="submit">Crear orden</button>
+                    </fieldset>
                 </form>
             </div>
-            {/* <button onClick={createOrder}>Crear orden</button> */}
             </>
         )    
     } else {
