@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ItemList from "../ItemList/ItemList";
 import { getFirestore, getDocs, collection, query, where } from "firebase/firestore";
+import Titulo from "../Titulo/Titulo";
 
 const ItemListContainer = () => {
 
@@ -34,6 +35,14 @@ const ItemListContainer = () => {
 
     return (
         <>
+            {categoryName ?
+                <Titulo titulo={categoryName}/>
+                : 
+                stageStatus ?
+                    <Titulo titulo={stageStatus}/>
+                :
+                <Titulo titulo="Todas las especies"/>
+            }
             <ItemList lista={productList} />
         </>
     );

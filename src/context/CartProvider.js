@@ -6,6 +6,13 @@ import withReactContent from 'sweetalert2-react-content';
 const CartProvider = ({children}) => {
     
     const MySwal = withReactContent(Swal);
+    const Toast = MySwal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+    })
     const [cart, setCart] = useState([]);
     const [itemCart, setItemCart] = useState(0);
 
@@ -16,17 +23,13 @@ const CartProvider = ({children}) => {
                 title: 'Atención',
                 html: `El producto <b>${item.title}</b> ya está en el carrito`,
                 showConfirmButton: true,
-                // timer: 1500
                 });
         } else {
             setCart([...cart, {...item, quantity},]);
-            MySwal.fire({
+            Toast.fire({
                 icon: 'success',
-                title: 'Genial!',
-                html: `El producto <b>${item.title}</b> fué agregado al carrito con éxito`,
-                showConfirmButton: true,
-                // timer: 1500
-                });
+                html: `El producto <b>${item.title}</b> fué agregado al carrito con éxito`
+            });
         }
     }
 

@@ -14,7 +14,7 @@ function App() {
             <CartProvider>
                 <BrowserRouter>
                     <NavBar />
-                    <Titulo titulo="Tarantulandia!!"/>
+                    {/* <Titulo titulo="Todas las especies"/> */}
                     <Routes>
                         <Route path="/" element={<ItemListContainer />} />
                         <Route path="category/:categoryName" element={<ItemListContainer />} />

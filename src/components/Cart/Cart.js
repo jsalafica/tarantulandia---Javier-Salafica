@@ -9,29 +9,15 @@ import withReactContent from 'sweetalert2-react-content';
 
 const Cart = () => {
     const MySwal = withReactContent(Swal);
-    const Toast = MySwal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        // didOpen: (toast) => {
-        //     toast.addEventListener('mouseenter', Swal.stopTimer)
-        //     toast.addEventListener('mouseleave', Swal.resumeTimer)
-        // }
-    })
-
     const {cart, removeItem, clear} = useContext(CartContext);
     const db = getFirestore();
     const navigate = useNavigate();
-
     const [values, setValues] = useState({
         name: "",
         phone: "",
         email: "",
         emailConfirm: ""
     });
-
     const [total, setTotal] = useState(0);
 
     useEffect(()=>{
@@ -47,7 +33,6 @@ const Cart = () => {
             },
             items: cart,
             total: total,
-            // total: cart.reduce((acc, item) => acc + item.price * item.quantity, 0),
             date: moment().format()
         };
         const query = collection(db, 'orders');
@@ -59,7 +44,6 @@ const Cart = () => {
                 title: 'Compra realizada con exito',
                 html: `Total de la compra: $${order.total}<br>Código de compra: ${id}`,
                 showConfirmButton: true,
-                // timer: 1500
                 });
         })
         .catch(() => alert('Error al completar tu compra'));
@@ -91,20 +75,18 @@ const Cart = () => {
     const submitOrder = (e) => {
         e.preventDefault();
         if (!values.name || !values.email || !values.phone) {
-            // MySwal.fire({
-            //     icon: 'error',
-            //     title: 'Error...',
-            //     text: 'Los campos no pueden estar vacíos',
-            //     footer: 'Formulario'
-            // });
-            Toast.fire({
+            MySwal.fire({
                 icon: 'error',
-                title: 'Los campos no pueden estar vacíos'
+                title: 'Error...',
+                text: 'Los campos no pueden estar vacíos',
+                footer: 'Formulario'
             });
         } else if (values.email !== values.emailConfirm){
-            Toast.fire({
+            MySwal.fire({
                 icon: 'error',
-                title: 'La dirección de correo no coincide'
+                title: 'Error...',
+                text: 'La direccion de correo no coincide',
+                footer: 'Formulario'
             });
         } else {
             createOrder();
